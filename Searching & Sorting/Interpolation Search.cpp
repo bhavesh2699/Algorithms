@@ -1,4 +1,4 @@
-//TIME COMPLEXITY O(vn)
+//TIME COMPLEXITY O((log log n))
 #include <iostream>
 #include <cmath>
 

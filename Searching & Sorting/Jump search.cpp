@@ -4,18 +4,21 @@
 
 using namespace std;
 int jump(int arr[],int num,int size){
-	int step=sqrt(size);
-	int prev=0;
-	for(int i=0;i<size;i++)
-	{   if(arr[step-1]<num)
-		{
-				prev=step;
-				step+=sqr;
-				
-				if(arr[step])
-		}
-
+	int end=sqrt(size);
+	int start=0;
+	while(arr[end]<=num && end<size)
+	{
+		start=end;
+		end+=sqrt(size);
 	}
+	for(int i=start;i<end;i++)
+	{
+		if(arr[i]==num)
+		{
+			return num;
+		}
+	}
+	
 }
 int main() {
 	int i,n,num;
@@ -30,6 +33,7 @@ int main() {
   cin>>num;
   int size = sizeof(arr) / sizeof(arr[0]);
   int finder=jump(arr,num,size);
+  cout<<finder;
   
   return 0;
 }

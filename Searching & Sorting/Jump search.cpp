@@ -15,7 +15,7 @@ int jump(int arr[],int num,int size){
 	{
 		if(arr[i]==num)
 		{
-			return num;
+			return i;
 		}
 	}
 	
@@ -33,7 +33,7 @@ int main() {
   cin>>num;
   int size = sizeof(arr) / sizeof(arr[0]);
   int finder=jump(arr,num,size);
-  cout<<finder;
+  cout<<"Element"<<num<<"Found at:"<<finder;
   
   return 0;
 }

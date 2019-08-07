@@ -3,26 +3,68 @@
 #include <cmath>
 
 using namespace std;
-int part(int arr[],int lower,int upper)
-{   
-    int i,j;
+void swap(int* a, int* b)  
+{  
+    int t = *a;  
+    *a = *b;  
+    *b = t;  
+}  
+  
+/* This function takes last element as pivot, places  
+the pivot element at its correct position in sorted  
+array, and places all smaller (smaller than pivot)  
+to left of pivot and all greater elements to right  
+of pivot */
+int partition (int arr[], int low, int upper)  
+{  
+    int pivot = arr[upper];
+	int i=0; // pivot  
     
-	
-}
-
-int sort(int arr[],int lower,int upper)
-{
-	
-	
-		if (lower<upper) 
+  
+    for (int j = low; j <= upper - 1; j++)  
+    {  
+        // If current element is smaller than or  
+        // equal to pivot  
+        if (arr[j] <= pivot)  
         { 
-            part(arr,lower,upper);
-            
-        } 
-       
-   	return -1;
-	
-}
+		  	if(j!=0)
+	          {
+				i++; // increment index of smaller element  
+	            swap(&arr[i], &arr[j]);
+		      }
+        }  
+    }  
+    swap(&arr[i + 1], &arr[upper]);  
+    return (i + 1);  
+}  
+  
+/* The main function that implements QuickSort  
+arr[] --> Array to be sorted,  
+low --> Starting index,  
+high --> Ending index */
+void quickSort(int arr[], int low, int upper)  
+{  
+    if (low < upper)  
+    {  
+        /* pi is partitioning index, arr[p] is now  
+        at right place */
+        int pi = partition(arr, low, upper);  
+  
+        // Separately sort elements before  
+        // partition and after partition  
+        quickSort(arr, low, pi - 1);  
+        quickSort(arr, pi + 1, upper);  
+    }  
+}  
+  
+/* Function to print an array */
+void printArray(int arr[], int size)  
+{  
+    int i;  
+    for (i = 0; i < size; i++)  
+        cout << arr[i] << " ";  
+    cout << endl;  
+}  
 int main() {
 	int i,n,num;
   cout<<"enter number of elements in array:"<<endl;
@@ -33,8 +75,8 @@ int main() {
   	cin>>arr[i];
   }
   int size = sizeof(arr) / sizeof(arr[0]);
-  int finder=sort(arr,0,size);
-  cout<<"Element"<<num<<"Found at:"<<finder;
+  quickSort(arr,0,size);
+  printArray(arr,size);
   
   return 0;
 }

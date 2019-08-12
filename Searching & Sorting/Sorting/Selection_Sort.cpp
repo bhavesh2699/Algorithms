@@ -1,24 +1,22 @@
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
-void swap(int *first,int *second)
-{
-	int temp;
-	temp=*first;
-	*first=*second;
-	*second=temp;
-}
-void select(int arr[],int n)
-{   int min=0,i,j;
-	for(i=0;i<n;i++)
-	{   min=i;
-		for(j=i+1;j<n;j++)
-		{
-			if(arr[j]<arr[min])
-			   min=j;
-		}
-		swap(&arr[i],&arr[min]);
-	}
+
+void insert(int arr[],int n)
+{   int i,j,temp=0;
+	for (i = 1; i < n; i++) 
+    {  
+        temp = arr[i];  
+        for(j=i-1;j >= 0 && arr[j] > temp;j--)
+        {  
+          
+				arr[j + 1] = arr[j];  
+	            
+        } 
+        arr[j + 1] = temp; 
+		 
+ 
+    }  
 	
 }
 int main()
@@ -31,7 +29,7 @@ int main()
 	{   cin>>s;
 		arr[i]=s;
 	}
-	select(arr,n);
+	insert(arr,n);
 	for(int i=0;i<n;i++)
 	{
 		cout<<arr[i];

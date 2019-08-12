@@ -8,7 +8,7 @@
  ```
  $ git clone https://github.com/bhavesh2699/Algorithms.git
  
- $ cd pwd/Algorithms
+ $ cd (pwd)/Algorithms
  ```
   # Requiremnts
   - Linux,mac or windows

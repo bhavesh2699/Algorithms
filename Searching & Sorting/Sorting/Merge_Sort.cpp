@@ -3,6 +3,8 @@
 using namespace std;
 void merge(int arr,int l,int m,int h)
 {
+	int k1=m-l+1;
+	int k2=m+h;
 	
 }
 void merge(int arr[],int l,int h)

@@ -5,7 +5,17 @@ void merge(int arr,int l,int m,int h)
 {
 	int k1=m-l+1;
 	int k2=m+h;
-	
+	int i,j,k;
+	int L[k1],R[k2];
+	for(i=0;i<k1;i++)
+	 L[k1]=arr[l+i];
+	 for(j=0;j<k1;j++)
+	 R[k2]=arr[m+1+j];
+	 
+	while()
+	{
+		
+	}
 }
 void merge(int arr[],int l,int h)
 {   int mid=(l+h)/2;

@@ -1,57 +1,70 @@
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
-void mergeSort(int arr[],int l,int m,int h)
-{
-	int k1=m-l+1;
-	int k2=h-m;
-	int i,j,k;
-	int L[k1],R[k2];
-	for(i=0;i<k1;i++)
-	 L[k1]=arr[l+i];
-	 for(j=0;j<k1;j++)
-	 R[k2]=arr[m+1+j];
-	 
-	 i=0,j=0,k=l;
-	 
-	while(i<k1 && j<k2)
-	{
-		if(L[i]<=R[j])
-		{
-			arr[k]=L[i];
-			i++;
-		}
-		else{
-			arr[k]=R[j];
-			j++;
-		}
-		k++;
-	}
-	while (i < k1) 
+void merge(int arr[], int l, int m, int r) 
+{ 
+    int i, j, k; 
+    int n1 = m - l + 1; 
+    int n2 =  r - m; 
+  
+   
+    int L[n1], R[n2]; 
+  
+    
+    for (i = 0; i < n1; i++) 
+        L[i] = arr[l + i]; 
+    for (j = 0; j < n2; j++) 
+        R[j] = arr[m + 1+ j]; 
+  
+    
+    i = 0; 
+    j = 0; 
+    while (i < n1 && j < n2) 
     { 
-        arr[k1] = L[i]; 
+        if (L[i] <= R[j]) 
+        { 
+            arr[k] = L[i]; 
+            i++; 
+        } 
+        else
+        { 
+            arr[k] = R[j]; 
+            j++; 
+        } 
+        k++; 
+    } 
+  
+    
+    while (i < n1) 
+    { 
+        arr[k] = L[i]; 
         i++; 
         k++; 
     } 
   
-    /* Copy the remaining elements of R[], if there 
-       are any */
-    while (j < k2) 
+    
+    while (j < n2) 
     { 
-        arr[k2] = R[j]; 
+        arr[k] = R[j]; 
         j++; 
         k++; 
     } 
-}
-void merge(int arr[],int l,int h)
-{   
-	if(l<h)
-	{   int mid=l+(h-l)/2;
-		merge(arr,l,mid);
-		merge(arr,mid+1,h);
-		mergeSort(arr,l,mid,h);
-	}
-}
+} 
+  
+
+void mergeSort(int arr[], int l, int r) 
+{ 
+    if (l < r) 
+    { 
+        
+        int m = l+(r-l)/2; 
+  
+        mergeSort(arr, l, m); 
+        mergeSort(arr, m+1, r); 
+  
+        merge(arr, l, m, r); 
+    } 
+} 
 
 int main()
 {   int n,s;
@@ -63,7 +76,7 @@ int main()
 	{   cin>>s;
 		arr[i]=s;
 	}
-	merge(arr,0,n-1);
+	mergeSort(arr,0,n-1);
 	for(int i=0;i<n;i++)
 	{
 		cout<<arr[i];

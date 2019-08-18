@@ -3,25 +3,22 @@
 #define R 5
 #define C 5
 using namespace std;
-int isSafe(int arr[][C], int row, int col,bool visit[][C]) 
+int isSafe(int arr[][C], int row, int col, bool visit[][C]) 
 { 
     
     return (row >= 0) && (row < R) && (col >= 0) && (col < C) && (arr[row][col] && !visit[row][col]); 
 } 
-int search(int arr[][C],int i,int j,bool visit[][C])
+int search(int arr[][C],int row,int col,bool visit[][C])
 {
-	static int rNbr[] = { -1, -1, -1, 0, 0, 1, 1, 1 }; 
-    static int cNbr[] = { -1, 0, 1, -1, 1, -1, 0, 1 }; 
+	static int rowNbr[] = { -1, -1, -1, 0, 0, 1, 1, 1 }; 
+    static int colNbr[] = { -1, 0, 1, -1, 1, -1, 0, 1 }; 
   
-    visit[i][j] = true; 
+    visit[row][col] = true; 
   
     for (int k = 0; k < 8; ++k) 
-      {
-		 if (isSafe(arr, i + rNbr[k], j + cNbr[k], visit)) 
-            search(arr, i + rNbr[k], j + cNbr[k], visit); 
-        }
-} 
-
+        if (isSafe(arr, row + rowNbr[k], col + colNbr[k], visit)) 
+            search(arr, row + rowNbr[k], col + colNbr[k], visit); 
+}
 int call(int arr[][C])
 {
 	bool visit[R][C];
@@ -32,20 +29,19 @@ int call(int arr[][C])
     	for(int j=0;j<C;j++)
     	{
     		if(arr[i][j] && !visit[i][j])
+    		{
+
     		search(arr,i,j,visit);
-    		count++;
+    		++count;
+    	}
 		}
 	}
-	
-	
-	
-	
-	
+		
 	return count;
 }
 int main()
 {
-	int arr[R][C]={ { 1, 1, 0, 0, 0 }, 
+	int arr[][C]={ { 1, 1, 0, 0, 0 }, 
                      { 0, 1, 0, 0, 1 }, 
                      { 1, 0, 0, 1, 1 }, 
                      { 0, 0, 0, 0, 0 }, 

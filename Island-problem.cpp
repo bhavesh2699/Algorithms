@@ -3,6 +3,10 @@
 #define R 5
 #define C 5
 using namespace std;
+int search(int arr[][C],int i,int j,bool visit[][C])
+{
+	
+}
 int call(int arr[][C])
 {
 	bool visit[R][C];
@@ -13,7 +17,7 @@ int call(int arr[][C])
     	for(int j=0;j<C;j++)
     	{
     		if(arr[i][j] && !visit[i][j])
-    		search(arr,visit);
+    		search(arr,i,j,visit);
     		count++;
 		}
 	}

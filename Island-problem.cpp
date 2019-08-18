@@ -3,10 +3,25 @@
 #define R 5
 #define C 5
 using namespace std;
+int isSafe(int arr[][C], int row, int col,bool visit[][C]) 
+{ 
+    
+    return (row >= 0) && (row < R) && (col >= 0) && (col < C) && (arr[row][col] && !visit[row][col]); 
+} 
 int search(int arr[][C],int i,int j,bool visit[][C])
 {
-	
-}
+	static int rNbr[] = { -1, -1, -1, 0, 0, 1, 1, 1 }; 
+    static int cNbr[] = { -1, 0, 1, -1, 1, -1, 0, 1 }; 
+  
+    visit[i][j] = true; 
+  
+    for (int k = 0; k < 8; ++k) 
+      {
+		 if (isSafe(arr, i + rNbr[k], j + cNbr[k], visit)) 
+            search(arr, i + rNbr[k], j + cNbr[k], visit); 
+        }
+} 
+
 int call(int arr[][C])
 {
 	bool visit[R][C];

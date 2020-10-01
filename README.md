@@ -3,6 +3,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/bhavesh2699/Algorithms?style=plastic)    ![GitHub repo size](https://img.shields.io/github/repo-size/bhavesh2699/Algorithms?style=plastic)    ![GitHub commit merge status](https://img.shields.io/github/commit-status/badges/shields/master/5d4ab86b1b5ddfb3c4a70a70bd19932c52603b8c)   ![Bitbucket open issues](https://img.shields.io/bitbucket/issues-raw/bhavesh2699/Algorithms)    ![Puppet Forge endorsement](https://img.shields.io/puppetforge/e/camptocamp/openssl)     ![Requires.io (branch)](https://img.shields.io/requires/github/celery/celery/master)   ![Uptime Robot status](https://img.shields.io/uptimerobot/status/m778918918-3e92c097147760ee39d02d36) 
 
  This Repo contains implementation of algorithms in C++ referenced from [geeks for geeks](https://www.geeksforgeeks.org/fundamentals-of-algorithms/)
+ Learn every searching and sorting from it. 
  
  # Commands for git bash
  ```

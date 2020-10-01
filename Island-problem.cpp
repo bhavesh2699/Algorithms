@@ -1,51 +1,35 @@
-#include<iostream>
-#include<bits/stdc++.h>
-#define R 5
-#define C 5
-using namespace std;
-int isSafe(int arr[][C], int row, int col, bool visit[][C]) 
-{ 
+class Solution {
+public:
+    void dfs(vector<vector<char>> &g, int r, int c, int &m, int &n, int *dr, int*dc){
+        g[r][c]='0';
+        for(int i=0; i<4; i++){
+            int rr = r+dr[i];
+            int cc = c+dc[i];
+            
+            if(rr<0||rr>=m||cc<0||cc>=n||g[rr][cc]=='0') continue;
+            
+            dfs(g, rr, cc, m, n, dr, dc);
+        }
+    }
     
-    return (row >= 0) && (row < R) && (col >= 0) && (col < C) && (arr[row][col] && !visit[row][col]); 
-} 
-int search(int arr[][C],int row,int col,bool visit[][C])
-{
-	static int rowNbr[] = { -1, -1, -1, 0, 0, 1, 1, 1 }; 
-    static int colNbr[] = { -1, 0, 1, -1, 1, -1, 0, 1 }; 
-  
-    visit[row][col] = true; 
-  
-    for (int k = 0; k < 8; ++k) 
-        if (isSafe(arr, row + rowNbr[k], col + colNbr[k], visit)) 
-            search(arr, row + rowNbr[k], col + colNbr[k], visit); 
-}
-int call(int arr[][C])
-{
-	bool visit[R][C];
-	memset(visit,0,sizeof(visit));
-	int count =0;
-	for(int i=0;i<R;i++)
-    {
-    	for(int j=0;j<C;j++)
-    	{
-    		if(arr[i][j] && !visit[i][j])
-    		{
-
-    		search(arr,i,j,visit);
-    		++count;
-    	}
-		}
-	}
-		
-	return count;
-}
-int main()
-{
-	int arr[][C]={ { 1, 1, 0, 0, 0 }, 
-                     { 0, 1, 0, 0, 1 }, 
-                     { 1, 0, 0, 1, 1 }, 
-                     { 0, 0, 0, 0, 0 }, 
-                     { 1, 0, 1, 0, 1 } }; 
-                     
-    cout<<"Islands:"<<call(arr);
-}
+    
+    int numIslands(vector<vector<char>>& g) {
+        int m=g.size();
+        int n=m?g[0].size():0;
+        
+        int count=0;
+        
+        int dr[] = {0,0,1,-1};
+        int dc[] = {1,-1,0,0};
+        
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n; j++){
+                if(g[i][j]=='1'){
+                    count++;
+                    dfs(g, i, j, m, n, dr, dc);
+                }
+            }
+        }
+        return count;
+    }
+};
